@@ -1,0 +1,25 @@
+
+{
+    "extends": [
+        "tslint:latest",
+        "tslint-react",
+        "tslint-plugin-prettier",
+        "tslint-config-prettier"
+    ],
+    "rules": {
+        "quotemark": false,
+        "interface-name": false,
+        "ordered-imports": false,
+        "no-implicit-dependencies": false,
+        "no-submodule-imports": false,
+        "jsx-no-multiline-js": false,
+        "jsx-no-lambda": false,
+        "semicolon": [true, "always", "strict-bound-class-methods"],
+        "no-console": false,
+        "object-literal-sort-keys": false,
+        "arrow-parens": [2, "as-needed"],
+        "trailing-comma": false,
+        "prettier": true,
+        "no-shadowed-variable": false
+    }
+}

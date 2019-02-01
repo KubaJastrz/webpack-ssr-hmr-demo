@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+        "outDir": "/tmp/test-dist/",
+        "allowJs": true,
+        "sourceMap": true,
+        "noImplicitAny": true,
+        "module": "commonjs",
+        "target": "es5",
+        "jsx": "react",
+        "allowSyntheticDefaultImports": true,
+        "esModuleInterop": true,
+        "noUnusedLocals": true,
+        "resolveJsonModule": true,
+        "baseUrl": ".",
+        "lib": ["ES2017", "DOM", "ScriptHost"],
+        "paths": {
+            "@/*": ["./src/*"]
+        }
+    },
+    "include": ["./src/**/*", "./server.ts"],
+    "exclude": ["node_modules"]
+}
