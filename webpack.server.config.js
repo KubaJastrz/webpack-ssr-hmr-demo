@@ -4,7 +4,7 @@ const nodeExternals = require('webpack-node-externals');
 
 module.exports = {
     mode: 'development',
-    entry: ['./server.ts', 'webpack/hot/poll?1000'],
+    entry: ['./devServer.ts', 'webpack/hot/poll?1000'],
     target: 'node',
     output: {
         path: path.join(__dirname, 'build'),

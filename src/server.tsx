@@ -16,7 +16,6 @@ if ((module as any).hot) {
     (module as any).hot.accept('./App', () => {
         const NextApp = require('./App').default;
         toExport.renderEntireTree = rawRender(NextApp);
-        console.log('updated tree', toExport.renderEntireTree());
     });
 }
 

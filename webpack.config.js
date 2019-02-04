@@ -5,7 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
     mode: 'development',
     entry: {
-        main: ['./src/index.tsx', 'webpack-hot-middleware/client'],
+        main: ['./src/client.tsx', 'webpack-hot-middleware/client'],
     },
     output: {
         path: path.join(__dirname, './dist'),

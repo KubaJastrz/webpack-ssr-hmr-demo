@@ -30,11 +30,3 @@ export default function requestHandler(req: Request, res: ResponseWithWebpack) {
 function injectHtml(markup: string, htmlFile: string) {
     return htmlFile.replace('<div id="root">', `<div id="root">${markup}`);
 }
-
-if ((module as any).hot) {
-    (module as any).hot.accept('./server', () => {
-        // const NextApp = require('./App').default;
-        // renderEntireTree = rawRender(NextApp);
-        console.log('updated', Server.renderEntireTree());
-    });
-}

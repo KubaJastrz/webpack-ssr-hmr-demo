@@ -36,6 +36,5 @@ app.listen(PORT, () => {
 if ((module as any).hot) {
     (module as any).hot.accept('./src/requestHandler', () => {
         requestHandler = require('./src/requestHandler').default;
-        console.log('updated requestHandler');
     });
 }
