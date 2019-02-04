@@ -9,8 +9,8 @@ yarn server-watch   # watches express server for changes (necessary for HMR on s
 yarn start          # runs dev server with client HMR enabled
 ```
 
-Server will be live at http://localhost:3000. You can now edit `src/App.tsx` and
-changes should appear automatically. After page refresh, applied changes should
+Server will be live at http://localhost:3000. You can now edit `src/components/App.tsx`
+and changes should appear automatically. After page refresh, applied changes should
 remain visible (view the page source).
 
 ### How it works

@@ -17,6 +17,6 @@
             "@/*": ["./src/*"]
         }
     },
-    "include": ["./src/**/*", "./server.ts"],
+    "include": ["./src/**/*", "./devServer.ts"],
     "exclude": ["node_modules"]
 }
