@@ -1,15 +1,16 @@
 const path = require('path');
 const webpack = require('webpack');
-const nodeExternals = require('webpack-node-externals');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     mode: 'development',
-    entry: ['./src/requestHandler.tsx'],
-    target: 'node',
+    entry: {
+        main: ['./src/client.tsx', 'webpack-hot-middleware/client'],
+    },
     output: {
         path: path.join(__dirname, 'dist'),
-        filename: 'server.js',
-        libraryTarget: 'commonjs2', // necessary for webpack-hot-server-middleware
+        filename: 'client.js',
+        publicPath: '/',
     },
     resolve: {
         extensions: ['.ts', '.tsx', '.js', '.json'],
@@ -23,8 +24,10 @@ module.exports = {
         ],
     },
     plugins: [
+        new HtmlWebpackPlugin({
+            template: './src/index.html',
+        }),
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoEmitOnErrorsPlugin(),
     ],
-    externals: [nodeExternals()],
 };

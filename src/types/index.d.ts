@@ -9,3 +9,8 @@ export interface ResponseWithWebpack extends Response {
         webpackStats: Stats;
     };
 }
+
+export interface MiddlewareRenderer extends Record<string, any> {
+    clientStats: Stats;
+    serverStats: Stats;
+}

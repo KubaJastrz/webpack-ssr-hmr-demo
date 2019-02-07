@@ -2,39 +2,31 @@ import express from 'express';
 import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
+import webpackHotServerMiddleware from 'webpack-hot-server-middleware';
 
 import webpackConfig from './webpack.config.js';
+const clientConfig = webpackConfig.find(config => config.name === 'client');
 
-// tslint:disable-next-line no-var-requires
-let requestHandler = require('./src/requestHandler').default;
-
-const compiler = webpack(webpackConfig as any);
+const compiler = webpack(webpackConfig as any[]);
+const clientCompiler = compiler.compilers.find(
+    compiler => compiler.name === 'client'
+);
 
 const app = express();
 const PORT = 3000;
 
 app.use(
     webpackDevMiddleware(compiler, {
-        publicPath: webpackConfig.output.publicPath,
+        publicPath: clientConfig.output.publicPath,
         serverSideRender: true,
         index: false,
     })
 );
 
-app.use(
-    webpackHotMiddleware(compiler, {
-        reload: true,
-    })
-);
+app.use(webpackHotMiddleware(clientCompiler));
 
-app.get('*', requestHandler);
+app.use(webpackHotServerMiddleware(compiler as any));
 
 app.listen(PORT, () => {
     console.log(`Listening on port ${PORT}`);
 });
-
-if ((module as any).hot) {
-    (module as any).hot.accept('./src/requestHandler', () => {
-        requestHandler = require('./src/requestHandler').default;
-    });
-}

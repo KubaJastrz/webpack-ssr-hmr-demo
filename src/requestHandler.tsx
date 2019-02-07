@@ -1,12 +1,19 @@
 import path from 'path';
-import { RequestHandler } from 'express';
+import { Request, Response, RequestHandler } from 'express';
+import { Stats } from 'webpack';
 
 import ServerRenderer from './server';
-import { ResponseWithWebpack } from './types';
+import { MiddlewareRenderer } from './types';
 
-const requestHandler: RequestHandler = (req, res: ResponseWithWebpack) => {
+export const requestHandler = (
+    req: Request,
+    res: Response,
+    clientStats: Stats
+) => {
     const { fs, webpackStats } = res.locals;
-    const { outputPath } = webpackStats.toJson();
+    const { outputPath } = webpackStats
+        .toJson()
+        .children.find((stat: any) => stat.name === 'client');
 
     const markup = ServerRenderer.renderEntireTree();
     const htmlFile: Buffer = fs.readFileSync(
@@ -21,4 +28,11 @@ function injectHtml(markup: string, htmlFile: string) {
     return htmlFile.replace('<div id="root">', `<div id="root">${markup}`);
 }
 
-export default requestHandler;
+// used by webpack-hot-server-middleware as request handler
+// important: in production use requestHandler found above with regular fs
+export default function middlewareRenderer({
+    clientStats,
+    serverStats,
+}: MiddlewareRenderer): RequestHandler {
+    return (req, res) => requestHandler(req, res, clientStats);
+}

@@ -1,33 +1,7 @@
-const path = require('path');
-const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const clientDevConfig = require('./webpack.dev.config');
+const serverConfig = require('./webpack.server.config');
 
-module.exports = {
-    mode: 'development',
-    entry: {
-        main: ['./src/client.tsx', 'webpack-hot-middleware/client'],
-    },
-    output: {
-        path: path.join(__dirname, './dist'),
-        filename: 'main.js',
-        publicPath: '/',
-    },
-    resolve: {
-        extensions: ['.ts', '.tsx', '.js', '.json'],
-    },
-    module: {
-        rules: [
-            {
-                test: /\.tsx?$/,
-                loader: 'awesome-typescript-loader',
-            },
-        ],
-    },
-    plugins: [
-        new HtmlWebpackPlugin({
-            template: './src/index.html',
-        }),
-        new webpack.HotModuleReplacementPlugin(),
-        new webpack.NoEmitOnErrorsPlugin(),
-    ],
-};
+module.exports = [
+    { name: 'client', ...clientDevConfig },
+    { name: 'server', ...serverConfig },
+];

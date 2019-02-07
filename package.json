@@ -1,11 +1,9 @@
 {
     "name": "ssr-hmr",
-    "version": "0.1.0",
-    "main": "index.js",
+    "version": "0.2.0",
     "private": true,
     "scripts": {
-        "start": "node build/devServer.js",
-        "server-watch": "webpack --config webpack.server.config.js --watch"
+        "start": "ts-node devServer.ts"
     },
     "dependencies": {
         "react": "16.7.0",
@@ -23,6 +21,7 @@
         "express": "4.16.4",
         "html-webpack-plugin": "3.2.0",
         "prettier": "1.16.3",
+        "ts-node": "8.0.2",
         "tslint": "5.12.1",
         "tslint-config-prettier": "1.17.0",
         "tslint-plugin-prettier": "2.0.1",
@@ -32,6 +31,7 @@
         "webpack-cli": "3.2.1",
         "webpack-dev-middleware": "3.5.1",
         "webpack-hot-middleware": "2.24.3",
+        "webpack-hot-server-middleware": "0.5.0",
         "webpack-node-externals": "1.7.2"
     }
 }
